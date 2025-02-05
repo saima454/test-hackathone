@@ -68,7 +68,8 @@ export default function JsonResponseViewer({ data }: JsonResponseViewerProps) {
       </Button>
 
       <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <AlertDialogContent>
+      <AlertDialogContent className="bg-white p-6 rounded-lg shadow-lg">
+
           <AlertDialogHeader>
             <AlertDialogTitle className="text-2xl font-bold">Shipment Details</AlertDialogTitle>
           </AlertDialogHeader>
@@ -118,6 +119,15 @@ export default function JsonResponseViewer({ data }: JsonResponseViewerProps) {
             >
               Close
             </Button>
+            <Link href={"/checkout"}>
+              <Button 
+                variant="outline" 
+                className="mt-4"
+              >
+                Checkout
+              </Button>
+            </Link>
+
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

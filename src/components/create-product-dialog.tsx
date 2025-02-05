@@ -66,7 +66,7 @@ export function CreateProductDialog({
         <DialogHeader>
           <DialogTitle>Create New Product</DialogTitle>
           <DialogDescription>
-            Add a new product to your store. Click save when you're done.
+            Add a new product to your store. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-6 py-4">
@@ -80,9 +80,9 @@ export function CreateProductDialog({
                 <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
-                  value={product.productName}
+                  value={product.name}
                   onChange={(e) =>
-                    setProduct({ ...product, productName: e.target.value })
+                    setProduct({ ...product, name: e.target.value })
                   }
                 />
               </div>
@@ -120,15 +120,15 @@ export function CreateProductDialog({
                 </Select>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="stock">Stock</Label>
+                <Label htmlFor="colors">colors</Label>
                 <Input
-                  id="stock"
-                  type="number"
-                  value={product.inventory}
+                  id="colors"
+                  type="string"
+                  value={product.colors}
                   onChange={(e) =>
                     setProduct({
                       ...product,
-                      inventory: Number(e.target.value),
+                      colors: String(e.target.value),
                     })
                   }
                 />

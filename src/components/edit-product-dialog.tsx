@@ -58,7 +58,7 @@ export function EditProductDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="max-w-3xl bg-white p-6 rounded-lg shadow-lg">
         <DialogHeader>
           <DialogTitle>Edit Product</DialogTitle>
           <DialogDescription>
@@ -70,7 +70,7 @@ export function EditProductDialog({
             <div className="relative aspect-square w-40 overflow-hidden rounded-lg border">
               <Image
                 src={product.image || "/placeholder.svg"}
-                alt={product.productName}
+                alt={product.name || "image"}
                 fill
                 className="object-cover"
               />
@@ -86,9 +86,9 @@ export function EditProductDialog({
                 <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
-                  value={product.productName}
+                  value={product.name}
                   onChange={(e) =>
-                    setProduct({ ...product, productName: e.target.value })
+                    setProduct({ ...product, name: e.target.value })
                   }
                 />
               </div>
@@ -127,10 +127,10 @@ export function EditProductDialog({
                 <Label htmlFor="stock">Stock</Label>
                 <Input
                   id="stock"
-                  type="number"
-                  value={product.inventory}
+                  type="string"
+                  value={product.colors}
                   onChange={(e) =>
-                    setProduct({ ...product, inventory: Number(e.target.value) })
+                    setProduct({ ...product, colors: e.target.value })
                   }
                 />
               </div>

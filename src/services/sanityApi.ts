@@ -7,12 +7,11 @@ import { client } from "@/sanity/lib/client"
 export interface ICard {
   image: string;
   colors: string;
-  productName: string;
+  name: string;
   _id: string;
   category: string;
   status: string;
   description: string;
-  inventory: number;
   price: number;
 }
 
@@ -21,14 +20,16 @@ export async function sanityFetch(query: string) {
   const res: ICard[] =  await client.fetch(`${query}{
           'image': image.asset->url,
           colors,
-          productName,
+          name,
           _id,
           category,
           status,
           description,
-          inventory,
           price
         }`)
+
+        console.log("✅ Product fetched:", res);
+        
 
   return res;
 }
@@ -90,10 +91,9 @@ export async function productPostSanity(updatedProduct: ICard) {
         _ref: imageAsset._id,
       },
     },
-    productName: updatedProduct.productName,
+    productName: updatedProduct.name,
     price: updatedProduct.price,
     category: updatedProduct.category,
-    inventory: updatedProduct.inventory,
     description: updatedProduct.description,
   })
   .commit();
@@ -120,10 +120,9 @@ export async function productCreateSanity(updatedProduct: ICard) {
   try {
     const res = await client.create({
       _type: "product",
-      productName: updatedProduct.productName,
+      productName: updatedProduct.name,
       price: updatedProduct.price,
       category: updatedProduct.category,
-      inventory: updatedProduct.inventory,
       description: updatedProduct.description,
       status: "active",
       colors: [],

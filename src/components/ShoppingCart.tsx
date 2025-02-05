@@ -27,8 +27,8 @@ export default function ShoppingCart() {
   useEffect(() => {
     async function getUserIdAndUpdateCart() {
       const sanityUserId = await userPostSanity();
+      
       const cart = localStorage.getItem("cart");
-
       const updatedCart = cart ? JSON.parse(cart) : [];
 
       const name = searchParam.get("name");
@@ -196,7 +196,7 @@ export default function ShoppingCart() {
                       .toLocaleString()}
                   </span>
                 </div>
-                <Link href={"/checkout"}>
+                <Link href={"/shipment"}>
                   <Button className="w-full">Member Checkout</Button>
                 </Link>
               </div>

@@ -23,7 +23,6 @@ export const userSchema = {
         type: 'string',
         title: 'Password',
       },
-  
       {
         name: 'image',
         type: 'url',

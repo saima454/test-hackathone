@@ -7,16 +7,13 @@ export default async function getUserInfo() {
   const { userId } = await auth();
   const user = await currentUser();
 
-  const userName = `${user?.firstName} ${user?.lastName}`
-  const userEmail = `${user?.externalAccounts[0].emailAddress}`
-  const userImage = user?.imageUrl
-
   return {
+    image: user?.imageUrl,
+    name: `${user?.firstName} ${user?.lastName}`,
+    email: user?.emailAddresses[0].emailAddress,
     userId,
-    name: userName,
-    email: userEmail,
-    image: userImage
-  }
+    lastSignIn: user?.lastSignInAt
+  };
 }
 
 export async function userPostSanity() {
@@ -32,7 +29,7 @@ export async function userPostSanity() {
       image: user?.image,
     });
 
-    console.log("User created in Sanity:", res);
+    console.log("😡User created in Sanity:", res);
     return res.userID;
   } catch (error) {
     console.error("Sanity API error:", error);
